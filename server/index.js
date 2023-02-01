@@ -1,17 +1,24 @@
+// const express = require("express");
+// const bodyParser = require("body-parser");
+// const mongoose = require("mongoose");
+
+// const cors = require("cors");
+// const dotenv = require("dotenv");
+// const multer = require("multer");
+// const helment = require("helmet");
+// const morgan = require("morgan");
+
+
+// const path = require("path");
+// const { fileURLToPath } = require("url"); // may need to change to direct imports
+
+// const {register} = require("./controllers/auth.js");
+
+import { fileURLToPath } from "url";
 const express = require("express");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
 
-const cors = require("cors");
-const dotenv = require("dotenv");
-const multer = require("multer");
-const helment = require("helmet");
-const morgan = require("morgan");
 
-const path = require("path");
-const { fileURLToPath } = require("url"); // may need to change to direct imports
 
-const {register} = require("./controllers/auth.js");
 
 
 const filename = fileURLToPath(import.meta.url);
