@@ -24,6 +24,10 @@ import multer from "multer";
 import helmet from "helmet";
 import morgan from "morgan";
 
+import {register} from "./controllers/auth.js";
+
+
+
 import path from "path";
 
 const filename = fileURLToPath(import.meta.url);
