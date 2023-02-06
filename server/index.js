@@ -9,6 +9,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
+import postRoutes from "./routes/posts.js";
 // import postRoutes from "./routes/posts.js";
 
 import {register} from "./controllers/auth.js";
