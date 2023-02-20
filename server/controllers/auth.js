@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 
 import User from "../Models/User.js";
 
-
 /* Register User */
 export const register = async (req, res) => {
     // grab all attributes of the user schema
@@ -40,6 +39,7 @@ export const register = async (req, res) => {
         // create the new user and send the json data to the front end
         const savedUser = await newUser.save();
         res.status(201).json(savedUser);
+        
     } catch (error) {
         res.status(500).json({error: error.message});
     }

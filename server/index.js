@@ -10,15 +10,14 @@ import morgan from "morgan";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
-// import postRoutes from "./routes/posts.js";
-
 import {register} from "./controllers/auth.js";
-
-
 import path from "path";
 import { strict } from "once";
 import { createPost } from "./controllers/posts.js"
 import { verifyToken } from "./middleware/auth.js";
+import User from "./Models/User.js";
+import Post from "./Models/Post.js"
+import {users, posts} from "./data/index.js";
 
 const filename = fileURLToPath(import.meta.url);
 
@@ -66,7 +65,9 @@ mongoose.connect(process.env.MONGO_URL, {
     useUnifiedTopology: true,
 }).then(() => {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+
+    // /*ADD DATA ONE TIME*/
+    // User.insertMany(users);
+    // Post.insertMany(posts);
+
 }).catch((err) => console.log(err));
-
-
-
