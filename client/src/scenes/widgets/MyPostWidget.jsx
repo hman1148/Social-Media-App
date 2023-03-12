@@ -1,14 +1,14 @@
 import {
     EditOutlined,
     DeleteOutlined,
-    AttatchFileOutlined,
+    AttachFileOutlined,
     GifBoxOutlined,
     ImageOutlined,
     MicOutlined,
     MoreHorizOutlined,
 } from "@mui/icons-material";
 
-import {Box, Divder, Typography, InputBase, useTheme, Button, IconButton, useMediaQuery} from "@mui/material";
+import {Box, Divider, Typography, InputBase, useTheme, Button, IconButton, useMediaQuery} from "@mui/material";
 import Dropzone from "react-dropzone";
 import FlexBetween from "../../components/FlexBetween";
 import UserImage from "../../components/UserImage";
@@ -24,8 +24,8 @@ const MyPostWidget = ({picturePath}) => {
     const [isImage, setIsImage] = useState(false);
     const [image, setImage] = useState(null);
     const [post, setPost] = useState(""); // represents post content discription
-    const [palette] = useTheme();
-    const [_id] = useSelector((state) => state.user);
+    const { palette } = useTheme();
+    const { _id }= useSelector((state) => state.user);
     const token = useSelector((state) => state.token);
     const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
     const mediumMain = palette.neutral.mediumMain;
@@ -47,7 +47,7 @@ const MyPostWidget = ({picturePath}) => {
             headers: {Authorization: `Bearer ${token}`
         }
         });
-        const post = await response.json();
+        const posts = await response.json();
         dispatch(setPost({posts}));
         setImage(null);
         setPost("");
@@ -115,7 +115,7 @@ const MyPostWidget = ({picturePath}) => {
                     </Dropzone>
                 </Box>
             )}
-            <Divder sx={{margin: "1.25rem 0"}} />
+            <Divider sx={{margin: "1.25rem 0"}} />
 
             <FlexBetween>
                 <FlexBetween gap = "0.25rem" onClick={() => setIsImage(!isImage)}>
@@ -134,7 +134,7 @@ const MyPostWidget = ({picturePath}) => {
                         <Typography color ={mediumMain}>Clip</Typography>
                     </FlexBetween>
                     <FlexBetween gap="0.25rem">
-                        <AttatchFileOutlined sx={{color: mediumMain}} />
+                        <AttachFileOutlined sx={{color: mediumMain}} />
                         <Typography color ={mediumMain}>Attatchment</Typography>
                     </FlexBetween>
                     <FlexBetween gap="0.25rem">
