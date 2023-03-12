@@ -59,8 +59,63 @@ const Form = () => {
     const isLogin = pageType === "login";
     const isRegister = pageType === "register";
 
+    // send data to the backend for registering a user
+    const register = async(values, onSubmitProps) => {
+        // this allows us to send form info with image to the backend
+        const formData = new FormData();
+        for (let value in values) {
+            formData.append(value, values[value]);
+        }
+        formData.append('picturePath', values.picture.name);
 
-    const handleFormSubmit = async(values, onSubmitProps) => {};
+        const saveUserResponse = await fetch(
+            "https://localhost:3001/auth/register",
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+        const savedUser = await savedUserResponse.json();
+        onSubmitProps.resetForm();
+
+        if (savedUser) {
+            setPageType("login");
+        }
+    };
+
+    const login = async(values, onSubmitProps) => {
+        const loggedInResponse = await fetch(
+            "https://localhost:3001/auth/login",
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json"},
+                body: JSON.stringify(values)
+            }
+        );
+
+        const loggedIn = await loggedInResponse.json();
+        onSubmitProps.resetForm();
+
+        if (loggedIn) {
+            dispatch(
+                setLogin({
+                    user: loggedIn.user,
+                    token: loggedIn.token
+                })
+            )
+        }
+        navigate("/home");
+    }
+
+
+    const handleFormSubmit = async(values, onSubmitProps) => {
+        if (isLogin) {
+            await login(values, onSubmitProps);
+        } 
+        if (isRegister) {
+            await register(values, onSubmitProps);
+        }
+    };
     
     return (
         <Formik
@@ -191,6 +246,41 @@ const Form = () => {
                 sx={{gridColumn: "span 4"}}
                 />
 
+                    </Box>
+
+                    {/* Buttons */}
+
+                    <Box>
+                        <Button
+                        fullWidth
+                        type="submit"
+                        sx={{
+                            m: "2rem 0", 
+                            p: "Item",
+                            backgroundColor: palette.primary.main,
+                            color: palette.background.alt,
+                            "&:hover": {color: palette.primary.main}
+                        }}
+                        >
+                            {isLogin ? "LOGIN": "REGISTER"}
+                        </Button>
+                        <Typography
+                        onClick={() => {
+                            setPageType(isLogin ? "register": "login");
+                            resetForm();
+                        }}
+                        sx= {{
+                          textDecoration: "underline",
+                          color: palette.primary.main,
+                          "&:hover": {
+                            cursor: "pointer",
+                            color: palette.primary.main
+                          }
+                        }}
+                        >
+                            {/* Give optinos if the user has or hasn't an account */}
+                            {isLogin ? "Don't have an account? Sign up here." : "Already have an account? Login here!"} 
+                        </Typography>
                     </Box>
                 </form>
             )}
