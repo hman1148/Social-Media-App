@@ -120,7 +120,7 @@ import {
   
           <FlexBetween gap="1rem" mb="0.5rem">
             <FlexBetween gap="1rem">
-              <img src="../assets/twitter.png" alt="twitter" />
+              <img src="../../../public/assets/twitter.png" alt="twitter" />
               <Box>
                 <Typography color={main} fontWeight="500">
                   Twitter
@@ -133,7 +133,7 @@ import {
   
           <FlexBetween gap="1rem">
             <FlexBetween gap="1rem">
-              <img src="../assets/linkedin.png" alt="linkedin" />
+              <img src="../../../public/assets/linkedin.png" alt="linkedin" />
               <Box>
                 <Typography color={main} fontWeight="500">
                   Linkedin
