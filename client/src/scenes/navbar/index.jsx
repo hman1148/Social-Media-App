@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Box } from "@mui/material";
 import {
     Box, 
     IconButton,
@@ -18,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 import FlexBetween from "../../components/FlexBetween";
 
 const Navbar  = () => {
-  
+
     const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -27,14 +26,13 @@ const Navbar  = () => {
 
     const theme = useTheme();
     const neutralLight = theme.palette.neutral.light;
-    const dark = theme.palette.dark;
-    const background = theme.background.palette.default;
+    const dark = theme.palette.neutral.dark;
+    const background = theme.palette.background.default;
     const primaryLight = theme.palette.primary.light;
     const alt = theme.palette.background.alt;
-    
 
-    const fullName = `${user.firstName} ${user.lastName}`;
-
+    // const fullName = `${user.firstName} ${user.lastName}`;
+    const fullName = "Hunter Peart"; 
 
     return  <FlexBetween padding="1rem 6%" backgroundColor={alt}>
     <FlexBetween gap="1.75rem">
